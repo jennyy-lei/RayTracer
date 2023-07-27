@@ -1,0 +1,138 @@
+-- mat_ball = gr.material({1,1,1}, {0.45, 0.5, 0.5}, 8, 1, 1.3)
+-- mat_ground = gr.material({127/255, 105/255, 93/255}, {0, 0, 0}, 0)
+-- mat_grass = gr.material({194/255, 242/255, 162/255}, {0, 0, 0}, 0)
+mat_water = gr.material({109/255, 225/255, 255/255}, {0.4, 0.4, 0.4}, 5, 1, 1.5)
+mat_water1 = gr.material({109/255, 225/255, 255/255}, {0.4, 0.4, 0.4}, 5)
+mat_water1:reflection(0)
+mat_water2 = gr.material({109/255, 225/255, 255/255}, {0.4, 0.4, 0.4}, 5)
+mat_water2:reflection(0.25)
+mat_water3 = gr.material({109/255, 225/255, 255/255}, {0.4, 0.4, 0.4}, 5)
+mat_water3:reflection(0.5)
+mat_water4 = gr.material({109/255, 225/255, 255/255}, {0.4, 0.4, 0.4}, 5)
+mat_water4:reflection(0.75)
+mat_water5 = gr.material({109/255, 225/255, 255/255}, {0.4, 0.4, 0.4}, 5)
+mat_water5:reflection(1)
+mat_white = gr.material({180/255, 200/255, 210/255}, {0.4, 0.4, 0.4}, 100)
+mat_white:reflection(0.5)
+
+-- mat_table = gr.material({0, 0, 0}, {0.5, 0.5, 0.5}, 25)
+-- mat_table:reflection(0.15)
+-- mat_wall = gr.material({244/255, 253/255, 255/255}, {0, 0, 0}, 0)
+
+-- tex_wood = gr.texture('Assets/Textures/wood2.png')
+bump = gr.bump('Assets/Textures/wall.png')
+text = gr.texture('Assets/Textures/checkers.png')
+
+scene = gr.node('root')
+
+
+-- sphere = gr.sphere('sphere')
+-- sphere:set_material(mat_water1)
+-- sphere:translate(-6, 1, 0)
+-- -- sphere:translate(-1.5, 1, 0)
+-- scene:add_child(sphere)
+
+-- sphere = gr.sphere('sphere')
+-- sphere:set_material(mat_water2)
+-- sphere:scale(1, 1, 1)
+-- sphere:translate(-3, 1, 0)
+-- scene:add_child(sphere)
+
+-- sphere = gr.sphere('sphere')
+-- sphere:set_material(mat_water3)
+-- sphere:scale(1, 1, 1)
+-- sphere:translate(0, 1, 0)
+-- scene:add_child(sphere)
+
+-- sphere = gr.sphere('sphere')
+-- sphere:set_material(mat_water4)
+-- sphere:scale(1, 1, 1)
+-- sphere:translate(3, 1, 0)
+-- scene:add_child(sphere)
+
+-- sphere = gr.sphere('sphere')
+-- sphere:set_material(mat_water5)
+-- sphere:scale(1, 1, 1)
+-- sphere:translate(6, 1, 0)
+-- scene:add_child(sphere)
+
+-- sphere = gr.sphere('sphere')
+-- sphere:set_material(mat_water)
+-- sphere:scale(1, 1, 1)
+-- sphere:translate(-1.5, 1, 0)
+-- scene:add_child(sphere)
+
+-- cube = gr.cube('cube')
+-- cube:set_material(mat_water)
+-- cube:translate(-.5, 0, -.5)
+-- cube:scale(2, 2, 2)
+-- cube:translate(0, 0, -1)
+-- scene:add_child(cube)
+
+-- cube = gr.cube('cube')
+-- cube:set_material(mat_water)
+-- cube:translate(-.5, 0, -.5)
+-- cube:scale(2, 2, 2)
+-- cube:rotate('y', 22)
+-- cube:translate(-2.2, 0, -1)
+-- scene:add_child(cube)
+
+-- cube = gr.cube('cube')
+-- cube:set_material(mat_water)
+-- cube:translate(-.5, 0, -.5)
+-- cube:scale(2, 2, 2)
+-- cube:rotate('y', 30)
+-- cube:translate(-1, 0, 1.1)
+-- scene:add_child(cube)
+
+-- cube = gr.cube('cube')
+-- cube:set_material(mat_water)
+-- cube:translate(-.5, 0, -.5)
+-- cube:scale(2, 2, 2)
+-- cube:rotate('y', -15)
+-- cube:translate(-1, 2, .1)
+-- scene:add_child(cube)
+
+-- cube = gr.cube('cube')
+-- cube:set_material(mat_water)
+-- cube:translate(-.5, 0, -.5)
+-- cube:scale(2, 2, 2)
+-- cube:rotate('y', -30)
+-- cube:translate(1.8, 0, 1.8)
+-- scene:add_child(cube)
+
+-- cone = gr.cone('cone')
+-- cone:set_material(mat_water)
+-- cone:scale(1, 2, 1)
+-- cone:translate(1.5, 0, 0)
+-- scene:add_child(cone)
+
+mat = gr.material({255/255, 225/255, 255/255}, {0.4, 0.4, 0.4}, 5)
+cylinder = gr.cone('cylinder')
+cylinder:set_material(mat)
+cylinder:set_texture(text, 150)
+-- cylinder:set_bump(bump, 200)
+-- cylinder:translate(-0.5, -0.5, -0.5)
+cylinder:scale(4, 4, 4)
+-- cylinder:translate(4.5, 1, 0)
+scene:add_child(cylinder)
+-- cylinder:caustic()
+
+-- plane = gr.mesh('plane', 'plane.obj')
+-- plane:scale(2, 2, 2)
+-- -- plane:translate(0, -1, 0)
+-- plane:set_material(mat_white)
+-- scene:add_child(plane)
+
+
+white_light = gr.point_light({10, 10, 5}, {0.7, 0.7, 0.7}, {1, 0, 0})
+blue_light = gr.point_light({-5, 10, 5}, {0.7, 0.7, 0.8}, {3, 0, 0})
+warm_light = gr.point_light({5, 10, 5}, {0.8, 0.7, 0.7}, {3, 0, 0})
+
+gr.render(scene, 'demo/bm.png', 128, 128,
+	  {5, -3, 8}, {-5, 3, -8}, {0, 1, 0}, 50,
+	  {0.3, 0.4, 0.5}, {white_light})
+
+-- gr.render(scene, 'demo/reflection.png', 1024, 512,
+-- 	  {0, .5, 8}, {0, 0, -8}, {0, 1, 0}, 50,
+-- 	  {0.3, 0.4, 0.5}, {white_light, blue_light, warm_light})
